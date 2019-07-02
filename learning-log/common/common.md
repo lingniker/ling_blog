@@ -7,3 +7,12 @@
 4. pm2 show id // pm2  
 5. pm2 list // pm2 展示所有的进程
 6. netstat -ntlp // 查看端口的使用 [连接](https://www.cnblogs.com/waylong/p/9132266.html)
+
+> 2019.06.30 
+
+7. filter 数组函数, 
+```js
+arr.filter(function(item){ // 不会改变原始数组。
+  return true // 函数中返回 true 的数组
+})
+```
