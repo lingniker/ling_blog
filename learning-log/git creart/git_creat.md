@@ -12,8 +12,12 @@
 
 ## 创建了 github 之后，
 
+
 // git 命令大全
 // https://github.com/michaelliao/learngit/blob/master/2019-03/AlexSunShineZhou.md
+
+// git config --system --unset credential.helper
+// 参考链接 https://blog.csdn.net/ouyang_peng/article/details/80983996
 
 // git 版本库是不是可已将多人带入进来。
 // git fork 请求自己的路径
@@ -74,5 +78,5 @@
 
 ## 远程仓库 同一仓库授权 添加管理者信息 // 将其他人提交到版本库的管理上 其他人就有了这个版本库的权限了
 ```js
-
+  // 测试另一个用户提交
 ```
