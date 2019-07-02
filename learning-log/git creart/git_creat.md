@@ -8,7 +8,7 @@
 
 给仓库起一个名字,给个描述,是否是公开的,私人的需要付费。
   
-   ![起个名字](./creat_repositories.png)
+   ![起个名字](./creat_repositors.png)
 
 ## 创建了 github 之后，
 
@@ -79,4 +79,12 @@
 ## 远程仓库 同一仓库授权 添加管理者信息 // 将其他人提交到版本库的管理上 其他人就有了这个版本库的权限了
 ```js
   // 测试另一个用户提交
+```
+
+> 分支的创建,切换
+```js
+  git branch branchname    // 创建分支
+  git checkout  branchname  // 切换分支
+  git mergn // 合并分支
+  // 测试插入
 ```
