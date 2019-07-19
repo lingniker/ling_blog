@@ -88,3 +88,31 @@
   git mergn // 合并分支
   // 测试插入
 ```
+
+> 请求远程的分支 dev 
+```js
+   git pull origin master/dev // 请求远程的分支
+```
+
+### lixi 的步骤
+``` js
+    git clone  `https://lingniker/github.com/lixi.git` // 克隆 lixi 仓库
+    git branch dev // 创建分支
+    git checkout dev // 切换分支
+    git pull origin master/dev // 将远程的dev分支上下载下来 先将现在master的文件全部删除掉
+    git push origin dev // 提交到 远程的 dev 上
+    // 这样本地就有了 dev 和 master 了。以后就可以使用 dev 做开发了。master 只是发版。不做任何开发。
+    // 任何人都是使用的是dev上代码。获取的都是最新的代码。
+    // 多人开发。所有的人的开发都是提交到dev上。更新的版本也是在dev上。
+    // 先fork 下。然后就是 pullrequest dev 上的代码。
+    // 然后就是提叫代码。等待 管理员的合并。
+    // master 不做任何开发的用途. 
+    // tag 分支
+    // gh-pages 是展示项目用的
+```
+
+ling_website 
+```js
+    git remote add origin 'https://github.com/lingniker/ling_website.git' // 设置源
+    // 使用的 vue 做开发
+```
