@@ -7,8 +7,74 @@
 ### 当界面上的数据变换的时候，内存中的数据也跟着在动。
 ### 这是我整理的 以后大家想看也也可以拿来看
 
+[参考链接](https://cn.vuejs.org/v2/api/#productionTip)
 ``` js
 // vue 上有什么属性 这应该是全部的属性了 大体看下就行了 不会细讲
+// 全局配置 
+config:{
+  silent,
+  optionmergeStategies,
+  devtools,
+  errorHandler,
+  warnHandler,
+  ignoredElements,
+  keyCodes,
+  performance,
+  productionTip,
+}
+// 全局api
+Vue: {
+  extend,
+  nextTick,
+  set,
+  delete,
+  directive,
+  filter,
+  component,
+  use,
+  mixin,
+  compile,
+  observable,
+  version
+}
+// 实例上的属性
+vm: {
+  $data,
+  $props,
+  $el,
+  $options,
+  $parent,
+  $root,
+  $children,
+  $slots,
+  $scopedSlots,
+  $refs,
+  $isServer,
+  $attrs,
+  $listeners
+}
+// 特殊属性
+{
+  key,
+  ref,
+  is,
+  slot,
+  slot-scope,
+  scope
+}
+// 实例方法/事件
+{
+  $on,
+  $once,
+  $off,
+  $emit
+}
+// 实例方法/数据
+{
+  $watch,
+  $set,
+  $delete
+}
 {
 name: '', // 组件的名字
 componentName: 'ElCheckbox', // 组件的名字
@@ -57,6 +123,7 @@ v-for
 v-bind
 v-model
 v-on
+v-slot
 
 ```
 
@@ -124,3 +191,49 @@ v-on
 2. 写得太多 也不好, 精髓就在这。如果没晕恭喜你。可以看下一篇了。
 3. 下一篇是。组件的细节。也是挑重点讲。
 
+
+# 大体流程基本弄懂
+1. 这里细讲一下。
+2. 其实是这样的,
+3. new Vue({data:'',mothons:(){},el:'#app')
+
+```js
+// 先讲这几个吧。
+// 从data开始
+// vue 使用一个 obverse 的方法。
+// 里面最主要的方法是 
+// Object.defindprottype(data,key,{
+//   get(){
+//       // 获取数据的方法
+//   },
+//   set (){ 
+//       // 设置属性方法
+//   }
+// })
+// 这样我们就可以监听数据了
+// 数据监听了 之后要做什么。
+// 当然是 解析 指令了。
+// 页面上 不是 有什么 v-if v-for {{}} v-on
+// 之类的东西吗
+// 接下来是 解析 complice 
+// 怎么个解析发呢。
+// 首先是,这样的, 是这样的。
+// 有一个正则 \{\{\}\} 。
+// 可以解析里面的数据
+// 然后就是 生成对应的数据。
+// 最后就是使用 vue 中的 watch 将数据放入进去,这边的指令与绑定的数据进行挂钩。
+// click 是 用到 document.addlistend('click',function().bind(this),false)
+// v-modal 是绑定在 value 上的数据。
+// 就是这样子简单。
+// vue 到此结束
+```
+## 接下来讲解 vue element ui 上的 tree 的写法。
+```js
+  // 上来一个子 不懂。
+  // 很好
+  // 其实现在我还没有完全弄清楚 vue 上面的代码呢。只不过现在还是弄清楚了这件事。
+  // node。 我也不知道这样子好不好。但是还是这个吧。没有自己的想法。
+  // 如果让我做的话，我也不知道怎么做。
+  // 就像当初的轮播图。现在还是很简单的一件事情了。非常简单就自己写出了一个轮播图了。
+  // 还是进步很大的
+```

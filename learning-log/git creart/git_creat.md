@@ -45,7 +45,7 @@
 ```
 
 ```js
-  git config --global user.name 'lingniker' // 谁是这样库
+  git config --global user.name 'lingniker' // 谁是这的库 拥有着
   git config --global user.mail 'lingyuanping@outlook.com' // 你的邮箱
 ```
 
