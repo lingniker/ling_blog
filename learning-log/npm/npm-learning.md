@@ -5,6 +5,7 @@
 
 4. cmpn 设置淘宝镜像  `npm install -g cnpm --registry=https://registry.npm.taobao.org`
 
+
 ## 镜像的切换
 1.得到原本的镜像地址
 
@@ -18,5 +19,4 @@
   
 
 2.换成原来的
-
   `npm config set registry https://registry.npmjs.org/`
