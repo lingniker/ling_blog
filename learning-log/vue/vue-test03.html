@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'>wangwu</div>
+  <script>  
+    var obj = {
+      name: 'lisi'
+    }
+    Object.defineProperty(obj, 'name', {
+      get: function(){
+        console.log('获取对象的值')
+      },
+      set: function (newVal){
+        document.getElementById('app').innerText = newVal
+      }
+    })
+    obj.name = 'lisi'
+  </script>
+  
+</body>
+</html>

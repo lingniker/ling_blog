@@ -115,11 +115,242 @@ beforeCreate created
   }
 ```
 
-12. 只是做了 diff 算法。
-13. 
+12. 根据页面生成一颗抽象树。render 调用 render 的时候就能更新试图了。
+数据触发的时候就。更改render 函数。生成一个 虚拟的 dom。虚拟 dom 会做 patch 比较。使用diff算法。最终更新到页面上。
 
+
+13. 只是做了 diff 算法。
+```js
+  // 通俗易懂的说是, 就是判断节点那些改变。
+  // 说一个非常好的测试。
+```
+//学习了，匿名函数的调用。
+
+// 这样就完成了。是不是学到了很多啊。
 
 ```js
    // 抽象树长什么样啊。
    `<div>123</div>`
 ```
+
+// 还是重新整理一下吧。别说了。我自己都不明白说的是什么。是将 vue 跑通了。但是这样还是不行啊。
+// 说的是什么鬼啊。看到这句话。你是聪明的。上面的所有的东西只是帮助作者理解的。接下来才是真的解析。
+
+
+## vue 是如何工作的
+### 本文使用的源码是 Vue.js v2.6.10 可自行从官网下载,或者是本项目的中获取。
+### 文档带注解的 vue vue-annotation.js。  本项目的中获取
+1. 首先我们知道 vue 是这样使用的
+```html
+   <div class="app">{{ name }}</div>
+   <script src="vue.js"></script>
+   <script>
+   new Vue({
+     el: '#app',
+     data: {
+       name: 'lisi'
+     }
+   })
+   </script>
+   <!-- 这是一个最简单的例子  页面会呈现lisi -->
+   
+```
+> 对应的文件是 vue-test01.html
+![vue-test01](./vue-test01.png)
+
+2. 为什么页面会呈现 lisi 呢。 vue 做了什么。这就是本文 所讨论的问题之一。
+3. 首先, vue 源码中。(不要从头往下看)
+
+```js
+  function Vue (options) { // vue.js 5067行。 一切都是从这里开始。 options 就是我们传进的参数
+    // ···
+    this._init(options); // 初始化整个 vue。 参数为传进的参数
+  }
+  // vue 不只是一个这么简单的函数
+```
+
+4. 接下来给 vue 添加属性和方法
+```js
+  // vue.js 5075行
+  initMixin(Vue); // 给 Vue 添加 init 函数
+  stateMixin(Vue); // 给 Vue 设置状态
+  eventsMixin(Vue); // 给 Vue 设置事件
+  lifecycleMixin(Vue); // 给 Vue 设置生命周期
+  renderMixin(Vue);  // 给 Vue 添加 render 函数
+```
+5. 生命周期(先别看) [参考链接](https://www.jianshu.com/p/0d50ea1cef93?utm_source=oschina-app) https://www.jianshu.com/p/0d50ea1cef93?utm_source=oschina-app
+
+```html
+  <!-- 读书人的事情怎么算是偷呢,感谢博主提供的代码 -->
+  <div id="container">
+    <button @click="changeMsg()">change</button>
+    <span>{{msg}}</span>
+    <button @click="destroy()">destroy</button>
+  </div>
+
+  <script type="text/javascript">
+    var vm = new Vue({
+      el:'#container',
+      data:{
+        msg:'TigerChain'
+      },
+      beforeCreate(){
+        console.group("%c%s","color:red",'beforeCreate--实例创建前状态')
+        console.log("%c%s","color:blue","el  :"+this.$el)
+        console.log("%c%s","color:blue","data  :"+this.$data)
+        console.log("%c%s","color:blue","message  :"+this.msg)
+      },
+      created() {
+        console.group("%c%s","color:red",'created--实例创建完成状态')
+        console.log("%c%s","color:blue","el  :"+this.$el)
+        console.log("%c%s","color:blue","data  :"+this.$data)
+        console.log("%c%s","color:blue","message  :"+this.msg)
+      },
+      beforeMount() {
+        console.group("%c%s","color:red",'beforeMount--挂载之前的状态')
+        console.log("%c%s","color:blue","el  :"+this.$el)
+        console.log(this.$el);
+        console.log("%c%s","color:blue","data  :"+this.$data)
+        console.log("%c%s","color:blue","message  :"+this.msg)
+      },
+      mounted() {
+        console.group("%c%s","color:red",'mounted--已经挂载的状态')
+        console.log("%c%s","color:blue","el  :"+this.$el)
+        console.log(this.$el);
+        console.log("%c%s","color:blue","data  :"+this.$data)
+        console.log("%c%s","color:blue","message  :"+this.msg)
+      },
+      beforeUpdate(){
+        console.group("%c%s","color:red",'beforeUpdate--数据更新前的状态')
+        console.log("%c%s","color:blue","el  :"+this.$el.innerHTML)
+        console.log(this.$el);
+        console.log("%c%s","color:blue","data  :"+this.$data)
+        console.log("%c%s","color:blue","message  :"+this.msg)
+        console.log("%c%s","color:green","真实的 DOM 结构:"+document.getElementById('container').innerHTML)
+      },
+      updated() {
+        console.group("%c%s","color:red",'updated--数据更新完成时状态')
+        console.log("%c%s","color:blue","el  :"+this.$el.innerHTML)
+        console.log(this.$el);
+        console.log("%c%s","color:blue","data  :"+this.$data)
+        console.log("%c%s","color:blue","message  :"+this.msg)
+        console.log("%c%s","color:green","真实的 DOM 结构:"+document.getElementById('container').innerHTML)
+      },
+      activated() {
+        console.group("%c%s","color:red",'activated-- keep-alive 组件激活时调用')
+        console.log("%c%s","color:blue","el  :"+this.$el)
+        console.log(this.$el);
+        console.log("%c%s","color:blue","data  :"+this.$data)
+        console.log("%c%s","color:blue","message  :"+this.msg)
+      },
+      deactivated(){
+        console.group("%c%s","color:red",'deactivated-- keep-alive 停用时调用')
+        console.log("%c%s","color:blue","el  :"+this.$el)
+        console.log(this.$el);
+        console.log("%c%s","color:blue","data  :"+this.$data)
+        console.log("%c%s","color:blue","message  :"+this.msg)
+      },
+      beforeDestroy() {
+        console.group("%c%s","color:red",'beforeDestroy-- vue实例销毁前的状态')
+        console.log("%c%s","color:blue","el  :"+this.$el)
+        console.log(this.$el);
+        console.log("%c%s","color:blue","data  :"+this.$data)
+        console.log("%c%s","color:blue","message  :"+this.msg)
+      },
+      destroyed() {
+        console.group("%c%s","color:red",'destroyed-- vue实例销毁完成时调用')
+        console.log("%c%s","color:blue","el  :"+this.$el)
+        console.log(this.$el);
+        console.log("%c%s","color:blue","data  :"+this.$data)
+        console.log("%c%s","color:blue","message  :"+this.msg)
+      },
+      methods: {
+        changeMsg() {
+          this.msg = 'TigerChain111'
+        },
+        destroy() {
+          this.$destroy() 
+        }
+      }
+    })
+  </script>
+```
+
+> 运行的结果  
+![vue-test02](./vue-test02.png)
+
+6. 现在主要说的是生命周期中的 beforeCreate 和 created 
+在 `initMixin(Vue)` 中添加了一个 `Vue.prototype._init`  增加了一个函数
+[参考](https://segmentfault.com/a/1190000007087912) https://segmentfault.com/a/1190000007087912
+
+```js 
+  // vue 4989行。  
+  initLifecycle(vm); // 初始化生命周期
+  initEvents(vm);    // 初始化事件
+  initRender(vm);    //  初始化 渲染函数
+  callHook(vm, 'beforeCreate'); // 调用生命周期的创建前钩子
+  initInjections(vm); // resolve injections before data/props // 初始化注册事件
+  initState(vm);  // 初始化状态事件 
+  initProvide(vm); // resolve provide after data/props  // 初始化规定
+  callHook(vm, 'created'); // 调用生命周期的创建后钩子
+```
+
+> 这里主要说的是调用钩子函数
+
+```js
+  // 回顾下vue 代码
+  var vm = new Vue({
+    el:'#container',
+    data:{
+      msg:'TigerChain'
+    },
+    beforeCreate(){ // 在这里我们传入 beforeCreate
+      console.group("%c%s","color:red",'beforeCreate--实例创建前状态')
+      console.log("%c%s","color:blue","el  :"+this.$el)
+      console.log("%c%s","color:blue","data  :"+this.$data)
+      console.log("%c%s","color:blue","message  :"+this.msg)
+    },
+    created() { // 在这里我们传入 beforeCreate
+      console.group("%c%s","color:red",'created--实例创建完成状态')
+      console.log("%c%s","color:blue","el  :"+this.$el)
+      console.log("%c%s","color:blue","data  :"+this.$data)
+      console.log("%c%s","color:blue","message  :"+this.msg)
+    },
+  })
+```
+
+> vue 会在不同的时刻调用钩子函数,并触发对应的钩子函数。 
+> callHook(vm, 'beforeCreate'); 这是的 vue 对应的 el data msg 都没有被赋值 所以说界面 没有值
+> 接下来分别 执行下面三个函数。
+> 1. initInjections(vm); // resolve injections before data/props // 初始化注册事件
+> 2. initState(vm);  // 初始化状态事件 
+> 3. initProvide(vm); // resolve provide after data/props  // 初始化规定
+> `callHook(vm, 'created');` 这是的 vue 对应的 el 没有赋值 ;  data msg 被赋值;  调用钩子函数 触发界面上的 created 函数
+![vue-test02](./vue-test.png)
+
+7. 这里说下 initState(). 应该有很多人都知道 vue 之所以是双向数据绑定.是因为 Object.defineProperty 这个属性。(后面自己看,看我的)
+[参考](https://segmentfault.com/a/1190000007434923) https://segmentfault.com/a/1190000007434923
+
+```html
+  <div id='app'>wangwu</div>
+  <script>  
+    var obj = {
+      name: 'lisi'
+    }
+    Object.defineProperty(obj, 'name' {
+      get: function(){
+        console.log('获取对象的值')
+      },
+      set: function (newVal){
+        document.getElementById('app').innerText = newVal
+      }
+    })
+    obj.name = 'lisi'
+  </script>
+```
+> 在页面上输入 `obj.name = 'zhaoliu'`  界面也会变动。改变数据就能改变界面。
+现在实现的单向流动。这就是 `Object.difineProperty` 的基本使用。
+![vue-test03](./vue-test03.png)
+
+
+8. 接下来调用的是 $mount 函数

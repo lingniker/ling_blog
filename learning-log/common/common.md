@@ -16,3 +16,14 @@ arr.filter(function(item){ // 不会改变原始数组。
   return true // 函数中返回 true 的数组
 })
 ```
+
+// 学到了一个知识点 匿名函数能传参
+```js
+    var b=5;
+    var a = (function(){
+        var i = 1;
+        return b+i;
+    })(b);
+    console.log(a);//a=6
+    // 这么
+```
