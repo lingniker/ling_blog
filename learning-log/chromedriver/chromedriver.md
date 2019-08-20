@@ -6,6 +6,7 @@
 ![step01.png](./images/step01.png)
 
 2. 对照下图所示的Chrome版本与chromedriver兼容版表，找到适合自己版本的chromedriver  
+[对应表链接](https://blog.csdn.net/huilan_same/article/details/51896672) https://blog.csdn.net/huilan_same/article/details/51896672
 
 ![step02.png](./images/step02.png)
 
