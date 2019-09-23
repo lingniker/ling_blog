@@ -20,3 +20,8 @@
 
 2.换成原来的
   `npm config set registry https://registry.npmjs.org/`
+
+
+package.json 的 配置
+
+[package 链接](https://docs.npmjs.com/files/package.json) https://docs.npmjs.com/files/package.json

@@ -116,3 +116,7 @@ ling_website
     git remote add origin 'https://github.com/lingniker/ling_website.git' // 设置源
     // 使用的 vue 做开发
 ```
+
+> 查看日记
+git log --pretty=oneline .\README.md
+git show <版本> <文件名>

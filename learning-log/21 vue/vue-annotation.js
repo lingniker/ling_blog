@@ -809,7 +809,7 @@
 
   Object.defineProperties( VNode.prototype, prototypeAccessors );
 
-  var createEmptyVNode = function (text) {
+  var createEmptyVNode= function (text) {
     if ( text === void 0 ) text = '';
 
     var node = new VNode();
@@ -2336,19 +2336,19 @@
 
   /*  */
 
-  // The template compiler attempts to minimize the need for normalization by
+  // The template compiler attempts to minimize the need for normalization by 模板编译器试图通过在编译时静态分析模板来最小化规范化需求。
   // statically analyzing the template at compile time.
   //
   // For plain HTML markup, normalization can be completely skipped because the
   // generated render function is guaranteed to return Array<VNode>. There are
   // two cases where extra normalization is needed:
-
+  // 对于纯HTML标记，可以完全跳过规范化，因为生成的呈现函数保证返回数组< VNode >。有两种情况需要额外标准化:
   // 1. When the children contains components - because a functional component
   // may return an Array instead of a single root. In this case, just a simple
   // normalization is needed - if any child is an Array, we flatten the whole
   // thing with Array.prototype.concat. It is guaranteed to be only 1-level deep
   // because functional components already normalize their own children.
-  function simpleNormalizeChildren (children) {
+  function simpleNormalizeChildren (children) { //简单标准化子组件
     for (var i = 0; i < children.length; i++) {
       if (Array.isArray(children[i])) {
         return Array.prototype.concat.apply([], children)
@@ -2373,7 +2373,7 @@
     return isDef(node) && isDef(node.text) && isFalse(node.isComment)
   }
 
-  function normalizeArrayChildren (children, nestedIndex) {
+  function normalizeArrayChildren (children, nestedIndex) { // 规范化数组子项
     var res = [];
     var i, c, lastIndex, last;
     for (i = 0; i < children.length; i++) {
@@ -2432,7 +2432,7 @@
     }
   }
 
-  function initInjections (vm) {
+  function initInjections (vm) { // 初始化 
     var result = resolveInject(vm.$options.inject, vm);
     if (result) {
       toggleObserving(false);
@@ -5008,7 +5008,7 @@
     };
   }
 
-  function initInternalComponent (vm, options) {
+  function initInternalComponent (vm, options) { // 初始内部组件
     var opts = vm.$options = Object.create(vm.constructor.options);
     // doing this because it's faster than dynamic enumeration.
     var parentVnode = options._parentVnode;
@@ -5027,7 +5027,7 @@
     }
   }
 
-  function resolveConstructorOptions (Ctor) {
+  function resolveConstructorOptions (Ctor) { // 解析结构选项
     var options = Ctor.options;
     if (Ctor.super) {
       var superOptions = resolveConstructorOptions(Ctor.super);

@@ -114,3 +114,14 @@ chromedriver 安装
   };
 </script>
 ```
+
+1. packjson 的 分析
+
+打包整个 dist。 开发环境 dev。  打包成文档 web。 测试 test。
+
+webpack.common.js 共同
+webpack.component.js 组件
+webpack.conf.js 配置
+webpack.dome.js 示例
+webpack.extension.js 扩展
+webpack.test.js 测试
