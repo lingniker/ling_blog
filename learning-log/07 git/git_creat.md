@@ -1,14 +1,16 @@
+# 只是草稿 建议不要看
+
 # git 学习 [git官网](https://github.com/)
 
 1. 注册 登录 github (这没什么可说的)
 
 2. 创建一个仓库 点击 new 
 
-  ![创建仓库](./new_repositories.png)
+  ![创建仓库](./img/new_repositories.png)
 
 给仓库起一个名字,给个描述,是否是公开的,私人的需要付费。
   
-   ![起个名字](./creat_repositors.png)
+   ![起个名字](./img/creat_repositors.png)
 
 ## 创建了 github 之后，
 
@@ -55,12 +57,12 @@
   git commit -m 'update' // 将暂存架上的添加到库中， 每次commit,都会生成 一个 哈希。 -m 'update' 是描述 这次的提交。方便日后查看的时候干了什么。提交完成之后就回退的了第一个转态，未改变转态
   
 ```
-![暂存架](./status_01.png)
-![暂存架](./status_02.png)
+![暂存架](./img/status_01.png)
+![暂存架](./img/status_02.png)
 
 > 图三 所示 就是将 项目提交上来了,没有任何的提交的东西。
 
-![暂存架3](./status_03.png)
+![暂存架3](./img/status_03.png)
 
 ```js
    　git checkout -- <filename> //文件修改后还没有提交到暂存区，进行撤销操作之后，文件恢复到和版本库中一模一样
