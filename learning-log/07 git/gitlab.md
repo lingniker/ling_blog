@@ -39,7 +39,7 @@
 
    ### 将 gitlab_id_rsa.pub 上传到gitlab 上 ssh-key
    ### ssh-agent 启动代理
-   ssh-agent hash
+   ssh-agent bash
    ### 将ssh添加到链接上
    ssh-add ~/.ssh/gitlab_id_rsa
 ```
