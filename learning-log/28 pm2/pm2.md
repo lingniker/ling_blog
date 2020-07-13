@@ -6,4 +6,5 @@
   pm2 list // 查看项目
   pm2 monit // 实时监听
   --name <app_name> // 给进程起一个别称
+  lsof -i :port  参看端口占用
 ```
