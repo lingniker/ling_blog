@@ -122,3 +122,6 @@ ling_website
 > 查看日记
 git log --pretty=oneline .\README.md
 git show <版本> <文件名>
+
+> 查看提交的代码量 
+git log --author="lingniker" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc }'
