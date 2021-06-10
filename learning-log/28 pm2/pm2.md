@@ -7,4 +7,5 @@
   pm2 monit // 实时监听
   --name <app_name> // 给进程起一个别称
   lsof -i :port  参看端口占用
+  pm2 start app.js --name="api"
 ```
