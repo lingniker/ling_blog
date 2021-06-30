@@ -1,1 +1,2 @@
-1. sudo npm install -g express sudo npm install -g express-generator 
+1. sudo npm install -g express 
+2. sudo npm install -g express-generator 

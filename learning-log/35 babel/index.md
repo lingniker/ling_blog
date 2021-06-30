@@ -1,3 +1,7 @@
+### 所有的babel 都是基于 nodejs 去运行。都是属于 js 的范畴。
+
+### 就是这样的事情了。
+
 ### 关于 es6 与 es5 的转换。
 
 ### es6 通过 babel-loader 转化后的到的代码
@@ -290,4 +294,9 @@
 ```js
   // 汇编语言入门教程
   // http://www.ruanyifeng.com/blog/2018/01/assembly-language-primer.html
+```
+
+
+```js
+  // 所有的 babel 都是基于 nodejs 程序写的。 但是 nodejs 又是基于什么来运行的呢。 它可以在 linux 和 windows 还有 mac 上运行。 从更底层方面 有做了什么呢。
 ```
